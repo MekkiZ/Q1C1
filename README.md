@@ -39,7 +39,7 @@ S'il vous plait faite un choix >>
 ```
 You have two features; you can display all homes or search specify data.
 
-After finish the four rounds you have to put 'q' word to stop the game:
+
 
 
 # Test the code
@@ -47,7 +47,7 @@ After finish the four rounds you have to put 'q' word to stop the game:
 You can test the code with this command:
 
 ```
-python 3 -m unittest
+python3 -m unittest Test/tests.py
 
 ```
 # Q1C1

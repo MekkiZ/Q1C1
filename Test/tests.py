@@ -15,7 +15,7 @@ class DataTest(unittest.TestCase):
         # '0004, 8701, 2022-08-03, 14/16 Rue Bernard Gante, VILLEMOMBLE, 93250, KIRRMAN, rache,
         # 1325830@gmail.com'
         for count, value in enumerate(c.clean_data_and_make_object()[1]):
-            value_out = + value
+            value_out = value
 
         self.assertEqual(value_out, '4121L5Rh5')
 
