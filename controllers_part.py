@@ -1,9 +1,9 @@
 """system module."""
 import sys
-
 import csv
 from operator import attrgetter
 import os
+from deserialiser_csv import main_serializer
 
 
 class Control:
@@ -156,4 +156,5 @@ def main_c():
 
 
 if __name__ == "__main__":
+    main_serializer()
     main_c()

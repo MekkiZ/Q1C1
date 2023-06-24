@@ -19,10 +19,6 @@ pip install -r requirements.txt
 
 First of all Run this command :
 ```
-python3 deserialiser_csv.py
-```
-And then :
-```
 python3 controllers_part.py
 ```
 
@@ -50,4 +46,4 @@ You can test the code with this command:
 python3 -m unittest Test/tests.py
 
 ```
-# Q1C1
+# Q1C1 Enjoy
