@@ -36,12 +36,13 @@ class Home:
 
     def __eq__(self, other):
         if isinstance(self, other.__class__):
-            return self.building_id == other.building_id
+            return self.property == other.property and self.building_id == other.building_id
         else:
             NotImplemented
 
     def __hash__(self):
-        return hash(self.street1)
+        return hash(('property', self.property,
+                     'building_id', self.building_id))
 
     def __getitem__(self, item):
         return f"{self.property[item]}" \

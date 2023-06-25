@@ -7,7 +7,7 @@ from deserialiser_csv import main_serializer
 
 
 class Control:
-    """Controller Part : data traitement from view and Models."""
+    """Controller Part : data handling from view and Models."""
 
     def __init__(self):
         """variables."""
@@ -17,6 +17,9 @@ class Control:
         self.data_sorted = []
         self.list_data = []
         self.data_cleaned = []
+        self.final_list = []
+
+        # Open the file previously created
         with open('DATAS/in_file.csv') as csv_file:
             reader = csv.reader(csv_file, delimiter=',')
             for row in reader:
@@ -28,6 +31,7 @@ class Control:
 
                We confirm 3 choices: 1 - display all homes
                                      2 - can search
+                                     Q - can Quit
 
                """
         from view import main_interface
@@ -48,21 +52,27 @@ class Control:
         from model import Home
 
         for obj in self.list_data:
-            try:
-                self.home_object = Home(property=obj[0], building_id=obj[1],
-                                        owner_acquisition_date=obj[2],
-                                        street1=obj[3], city=obj[4],
-                                        zip=obj[5],
-                                        lastname=obj[6], firstname=obj[7].lower(),
-                                        email=obj[8])
-                self.data_cleaned.append(self.home_object)
-            except ValueError as v:
-                raise v
+            # Use instance our class for each iteration
+            self.home_object = Home(property=obj[0], building_id=obj[1],
+                                    owner_acquisition_date=obj[2],
+                                    street1=obj[3], city=obj[4],
+                                    zip=obj[5],
+                                    lastname=obj[6], firstname=obj[7].lower(),
+                                    email=obj[8])
+            self.data_cleaned.append(self.home_object)
 
+        # we sorted all data by two instance way
         self.data_sorted = list(sorted(set(self.data_cleaned),
                                        key=attrgetter('building_id', 'lastname'),
                                        reverse=True))
-        return self.data_sorted
+
+        for i in self.data_sorted:
+            # Here we created a last list for delete all duplicat in our previously list and check it.
+
+            if i.building_id and i.property not in self.final_list:
+                self.final_list.append(i)
+
+        return self.final_list
 
     def loop_for_table_in_terminal(self, target):
         """
@@ -85,10 +95,10 @@ class Control:
             prt_width('\n', 1)
 
     def home_view_all(self):
-        '''
-        Fucntion for display all home
+        """
+        Function for display all home
         :return: table for terminal
-        '''
+        """
         return self.loop_for_table_in_terminal(self.clean_data_and_make_object())
 
     def search_option_filter_with_value_from_view(self):
@@ -98,52 +108,62 @@ class Control:
         """
         from view import search_for_user_param
 
-        header = list(filter(lambda home: home.property == 'property', self.data_sorted))
+        header = list(filter(lambda home: home.property == 'property', self.final_list
+                             ))
         search_for_filter, value_for_filter = search_for_user_param()
 
         if search_for_filter == 'property':
-            property = list(filter(lambda home: home.property == value_for_filter, self.data_sorted))
+            property = list(filter(lambda home: home.property == value_for_filter, self.final_list
+                                   ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(property)
 
         elif search_for_filter == 'building_id':
-            building = list(filter(lambda home: home.building_id == value_for_filter, self.data_sorted))
+            building = list(filter(lambda home: home.building_id == value_for_filter, self.final_list
+                                   ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(building)
 
         elif search_for_filter == 'owner_acquisition_date':
             owner_acquisition = list(
-                filter(lambda home: home.owner_acquisition_date == value_for_filter, self.data_sorted))
+                filter(lambda home: home.owner_acquisition_date == value_for_filter, self.final_list
+                       ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(owner_acquisition)
 
         elif search_for_filter == 'street1':
-            street = list(filter(lambda home: home.street1 == value_for_filter, self.data_sorted))
+            street = list(filter(lambda home: home.street1 == value_for_filter, self.final_list
+                                 ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(street)
 
         elif search_for_filter == 'city':
-            city = list(filter(lambda home: home.city == value_for_filter, self.data_sorted))
+            city = list(filter(lambda home: home.city == value_for_filter, self.final_list
+                               ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(city)
 
         elif search_for_filter == 'zip':
-            zip = list(filter(lambda home: home.zip == value_for_filter, self.data_sorted))
+            zip = list(filter(lambda home: home.zip == value_for_filter, self.final_list
+                              ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(zip)
 
         elif search_for_filter == 'lastname':
-            lastname = list(filter(lambda home: home.lastname == value_for_filter, self.data_sorted))
+            lastname = list(filter(lambda home: home.lastname == value_for_filter, self.final_list
+                                   ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(lastname)
 
         elif search_for_filter == 'firstname':
-            firstname = list(filter(lambda home: home.firstname == value_for_filter, self.data_sorted))
+            firstname = list(filter(lambda home: home.firstname == value_for_filter, self.final_list
+                                    ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(firstname)
 
         elif search_for_filter == 'email':
-            email = list(filter(lambda home: home.email == value_for_filter, self.data_sorted))
+            email = list(filter(lambda home: home.email == value_for_filter, self.final_list
+                                ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(email)
 
