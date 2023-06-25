@@ -19,7 +19,6 @@ def create_new_csv():
     try:
         with open('DATAS/new.csv', 'wb', ) as outfile:
             for i, files_name in enumerate(allFiles):
-                print(i, files_name)
                 with open(files_name, 'rb') as infile:
                     if i != 0:
                         infile.readline()
