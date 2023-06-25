@@ -49,6 +49,10 @@ class Control:
             return self.input_choice_first_menu_from_view()
 
     def clean_data_and_make_object(self):
+        """
+        This function have purpose to handle data, sort data, and create a new format with it.
+        :return: list of data sorted and cleaned for custumers
+        """
         from model import Home
 
         for obj in self.list_data:
@@ -174,10 +178,16 @@ class Control:
 
 
 def main_c():
+    """
+    Master function
+
+    """
     c = Control()
     c.input_choice_first_menu_from_view()
 
 
 if __name__ == "__main__":
+    # Import function from deserializer for clean file to handling and run the app.
+
     main_serializer()
     main_c()
