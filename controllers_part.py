@@ -115,58 +115,60 @@ class Control:
         header = list(filter(lambda home: home.property == 'property', self.final_list
                              ))
         search_for_filter, value_for_filter = search_for_user_param()
+        value_for_filter_striped = value_for_filter.strip()
+        search_for_filter_striped = search_for_filter.strip()
 
-        if search_for_filter == 'property':
-            property = list(filter(lambda home: home.property == value_for_filter, self.final_list
+        if search_for_filter_striped == 'property':
+            property = list(filter(lambda home: home.property == value_for_filter_striped, self.final_list
                                    ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(property)
 
-        elif search_for_filter == 'building_id':
-            building = list(filter(lambda home: home.building_id == value_for_filter, self.final_list
+        elif search_for_filter_striped == 'building_id':
+            building = list(filter(lambda home: home.building_id == value_for_filter_striped, self.final_list
                                    ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(building)
 
-        elif search_for_filter == 'owner_acquisition_date':
+        elif search_for_filter_striped == 'owner_acquisition_date':
             owner_acquisition = list(
-                filter(lambda home: home.owner_acquisition_date == value_for_filter, self.final_list
+                filter(lambda home: home.owner_acquisition_date == value_for_filter_striped, self.final_list
                        ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(owner_acquisition)
 
-        elif search_for_filter == 'street1':
-            street = list(filter(lambda home: home.street1 == value_for_filter, self.final_list
+        elif search_for_filter_striped == 'street1':
+            street = list(filter(lambda home: home.street1 == value_for_filter_striped, self.final_list
                                  ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(street)
 
-        elif search_for_filter == 'city':
-            city = list(filter(lambda home: home.city == value_for_filter, self.final_list
+        elif search_for_filter_striped == 'city':
+            city = list(filter(lambda home: home.city == value_for_filter_striped, self.final_list
                                ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(city)
 
-        elif search_for_filter == 'zip':
-            zip = list(filter(lambda home: home.zip == value_for_filter, self.final_list
+        elif search_for_filter_striped == 'zip':
+            zip = list(filter(lambda home: home.zip == value_for_filter_striped, self.final_list
                               ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(zip)
 
-        elif search_for_filter == 'lastname':
-            lastname = list(filter(lambda home: home.lastname == value_for_filter, self.final_list
+        elif search_for_filter_striped == 'lastname':
+            lastname = list(filter(lambda home: home.lastname == value_for_filter_striped, self.final_list
                                    ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(lastname)
 
-        elif search_for_filter == 'firstname':
-            firstname = list(filter(lambda home: home.firstname == value_for_filter, self.final_list
+        elif search_for_filter_striped == 'firstname':
+            firstname = list(filter(lambda home: home.firstname == value_for_filter_striped, self.final_list
                                     ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(firstname)
 
-        elif search_for_filter == 'email':
-            email = list(filter(lambda home: home.email == value_for_filter, self.final_list
+        elif search_for_filter_striped == 'email':
+            email = list(filter(lambda home: home.email == value_for_filter_striped, self.final_list
                                 ))
             self.loop_for_table_in_terminal(header)
             self.loop_for_table_in_terminal(email)
