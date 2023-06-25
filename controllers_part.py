@@ -48,13 +48,16 @@ class Control:
         from model import Home
 
         for obj in self.list_data:
-            self.home_object = Home(property=obj[0], building_id=obj[1],
-                                    owner_acquisition_date=obj[2],
-                                    street1=obj[3], city=obj[4],
-                                    zip=obj[5],
-                                    lastname=obj[6], firstname=obj[7].lower(),
-                                    email=obj[8])
-            self.data_cleaned.append(self.home_object)
+            try:
+                self.home_object = Home(property=obj[0], building_id=obj[1],
+                                        owner_acquisition_date=obj[2],
+                                        street1=obj[3], city=obj[4],
+                                        zip=obj[5],
+                                        lastname=obj[6], firstname=obj[7].lower(),
+                                        email=obj[8])
+                self.data_cleaned.append(self.home_object)
+            except ValueError as v:
+                raise v
 
         self.data_sorted = list(sorted(set(self.data_cleaned),
                                        key=attrgetter('building_id', 'lastname'),
