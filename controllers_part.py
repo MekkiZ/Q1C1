@@ -105,6 +105,10 @@ class Control:
         """
         return self.loop_for_table_in_terminal(self.clean_data_and_make_object())
 
+    def cleaned_function_for_search_and_optimized(self, header, column):
+        self.loop_for_table_in_terminal(header)
+        self.loop_for_table_in_terminal(column)
+
     def search_option_filter_with_value_from_view(self):
         """
         This function has purpose tu handling and create statement to verify the user's input
@@ -121,57 +125,48 @@ class Control:
         if search_for_filter_striped == 'property':
             property = list(filter(lambda home: home.property == value_for_filter_striped, self.final_list
                                    ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(property)
+            self.cleaned_function_for_search_and_optimized(header, property)
 
         elif search_for_filter_striped == 'building_id':
             building = list(filter(lambda home: home.building_id == value_for_filter_striped, self.final_list
                                    ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(building)
+            self.cleaned_function_for_search_and_optimized(header, building)
 
         elif search_for_filter_striped == 'owner_acquisition_date':
             owner_acquisition = list(
                 filter(lambda home: home.owner_acquisition_date == value_for_filter_striped, self.final_list
                        ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(owner_acquisition)
+            self.cleaned_function_for_search_and_optimized(header, owner_acquisition)
 
         elif search_for_filter_striped == 'street1':
             street = list(filter(lambda home: home.street1 == value_for_filter_striped, self.final_list
                                  ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(street)
+            self.cleaned_function_for_search_and_optimized(header, street)
 
         elif search_for_filter_striped == 'city':
             city = list(filter(lambda home: home.city == value_for_filter_striped, self.final_list
                                ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(city)
+            self.cleaned_function_for_search_and_optimized(header, city)
 
         elif search_for_filter_striped == 'zip':
             zip = list(filter(lambda home: home.zip == value_for_filter_striped, self.final_list
                               ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(zip)
+            self.cleaned_function_for_search_and_optimized(header, zip)
 
         elif search_for_filter_striped == 'lastname':
             lastname = list(filter(lambda home: home.lastname == value_for_filter_striped, self.final_list
                                    ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(lastname)
+            self.cleaned_function_for_search_and_optimized(header, lastname)
 
         elif search_for_filter_striped == 'firstname':
             firstname = list(filter(lambda home: home.firstname == value_for_filter_striped, self.final_list
                                     ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(firstname)
+            self.cleaned_function_for_search_and_optimized(header, firstname)
 
         elif search_for_filter_striped == 'email':
             email = list(filter(lambda home: home.email == value_for_filter_striped, self.final_list
                                 ))
-            self.loop_for_table_in_terminal(header)
-            self.loop_for_table_in_terminal(email)
+            self.cleaned_function_for_search_and_optimized(header, email)
 
         else:
             print("The word's section match with anything !!! retry please")
